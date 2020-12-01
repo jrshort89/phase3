@@ -10,12 +10,17 @@ class DocumentsController < ApplicationController
     def create
         #only find if the repo doesn't have this file
         new_doc = Document.find_or_initialize_by documentParams
-        if new_doc.save
-            pp 'Success!'
+        vers = new_doc.createVersion
+        if vers.id == nil
+            vers.save
+            render json: new_doc
+        end
+        if !new_doc.save
+            
         end
     end
 
-    # private
+    private
 
     def documentParams
         params.require(:document).permit(:name, :repository_id)
