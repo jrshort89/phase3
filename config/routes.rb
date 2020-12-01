@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/repositories/:id/documents', to: 'repositories#getDocuments'
   patch '/versions/bulk', to: 'versions#update_bulk'
+  delete '/versions/bulk', to: 'versions#delete_bulk'
 
   resources :versions
   resources :documents
