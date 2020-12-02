@@ -23,6 +23,16 @@ class RepositoriesController < ApplicationController
     end
 
     def create
-        puts 'Post Success!'
+        repo = Repository.find_or_initialize_by repo_params
+        if !repo.id
+            repo.save
+            render json: repo.to_json
+        end
+    end
+
+    private
+
+    def repo_params
+        params.require(:repository).permit(:name)
     end
 end
