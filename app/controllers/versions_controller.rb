@@ -8,7 +8,6 @@ class VersionsController < ApplicationController
     }.map { |version|
       version.id
     }
-    byebug
     no_version_ids = versions_ids - have_other_stage_version_ids
 
     if no_version_ids.count > 0
